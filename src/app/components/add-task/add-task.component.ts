@@ -32,7 +32,7 @@ export class AddTaskComponent implements OnInit {
 
     // @todo - emit event
 
-    
+    this.onAddTask.emit(newTask);
 
     this.text ='';
     this.day = '';
