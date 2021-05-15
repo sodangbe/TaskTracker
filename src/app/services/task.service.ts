@@ -3,6 +3,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import{Observable,of} from 'rxjs';
 import {Task} from '../Task';
 //import {TASKS} from '../mock-tasks';
+const httpOptions = {
+  headers: new HttpHeaders({
+     'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +33,11 @@ private apiUrl = "http://localhost:3000/tasks"
 
     return this.http.delete<Task>(url);
 
+  }
+
+  updateTaskReminder(task: Task) : Observable<Task> {
+    
+     const url=`${this.apiUrl}/${task.id}`;
+     return this.http.put<Task>(url,task, httpOptions);
   }
 }
