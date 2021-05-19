@@ -1,4 +1,7 @@
+import { UIService } from './../../services/ui.service';
 import { Component, OnInit } from '@angular/core';
+import{Subscription} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +11,28 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   title: string = 'Task Tracker';
+  showAddTask: boolean = false;
+  subscription: Subscription = new Subscription;
+
   
-  constructor() { }
+  constructor(private uiService: UIService, private router: Router) {
+    this.subscription = this.uiService
+      .onToggle()
+      .subscribe((value) => (this.showAddTask = value));
+  }
+
 
   ngOnInit(): void {
   }
 
+  ngOnDestroy() {
+    // Unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
   toggleAddTask(){
 
-    console.log('toggle')
+    //console.log('toggle')
+    this.uiService.toggleAddTask();
   }
 
 }
