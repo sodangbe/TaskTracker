@@ -1,4 +1,4 @@
-import { UIService } from './../../services/ui.service';
+import { UIService } from '../../services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import{Subscription} from 'rxjs';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   title: string = 'Task Tracker';
   showAddTask: boolean = false;
-  subscription: Subscription = new Subscription;
+  subscription: Subscription;
 
   
   constructor(private uiService: UIService, private router: Router) {
