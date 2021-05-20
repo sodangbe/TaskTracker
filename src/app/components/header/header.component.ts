@@ -35,4 +35,8 @@ export class HeaderComponent implements OnInit {
     this.uiService.toggleAddTask();
   }
 
+  hasRoute(route :string){
+return this.router.url === route;
+}
+
 }
